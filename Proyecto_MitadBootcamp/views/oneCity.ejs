@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ciudad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://kit.fontawesome.com/a80e1d56f1.js" crossorigin="anonymous"></script>
+  </head>
+<body>
+  <%- include('navbar') %>
+
+  <main class="container-fluid">
+
+    <section class="row city">
+      <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title mb-5"><%= finalResult.city %></h2>
+            <h5><%= finalResult.country %></h5>
+            <p class="card-text"><%= finalResult.info %></p>
+            <a href="/place/createPlaceForm/<%= finalResult.destination_id %>" class="btn css-button-sliding-to-bottom--yellow mb-2">Crear lugar</a>
+            <a href="/city/logicDeleteCity/<%= finalResult.destination_id %>" class="btn css-button-sliding-to-bottom--red mb-2">Borrar</a> 
+          </div>
+        </div>          
+      </div>
+      <div class="col-12 col-xl-6 contimg">
+        <img src="/images/cities/<%= finalResult.city_img %>">
+      </div>
+    </section>
+
+    <section class="row sct1">        
+      <% finalResult.places.forEach((place) => { %>    
+        <div class="col d-flex justify-content-center align-items-center mb-5">
+          <div class="card" style="width: 18rem;">
+            <img src="/images/places/<%= place.place_img %>" class="card-img-top" alt="..." height="150px">
+            <div class="card-body">
+              <h4 class="card-title"><%= place.name %></h4>
+              <h5><%= place.address %></h5>
+              <!-- <p class="card-text"><%= place.history %></p> -->
+              <a href="/place/onePlace/<%= place.place_id %>" class="btn css-button-3d--sky">Mas info</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </section>
+
+
+  </main>
+
+
+  <%- include('footer') %>

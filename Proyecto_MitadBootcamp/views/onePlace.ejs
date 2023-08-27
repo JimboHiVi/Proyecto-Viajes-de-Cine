@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lugar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://kit.fontawesome.com/a80e1d56f1.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <%- include('navbar') %>
+   
+
+
+    <main class="container-fluid">
+      <section class="row city">
+          <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center mb-5">
+            <div class="card">
+              <div class="card-body">
+                <h2 class="card-title mb-5"><%= finalResult.name %></h2>
+                <h5><%= finalResult.address %></h5>
+                <p class="card-text"><%= finalResult.history %></p>
+                <a href="/place/editForm/<%= finalResult.place_id %>" class="btn css-button-sliding-to-bottom--yellow mb-2">Editar</a>
+                <a href="/place/logicDeletePlace/<%= finalResult.place_id %>" class="btn css-button-sliding-to-bottom--red mb-2">Borrar</a>       
+              </div>
+            </div>         
+          </div>
+          <div class="col-12 col-xl-6 contimg">
+            <img src="/images/places/<%= finalResult.place_img %>">
+          </div>
+      </section>        
+
+
+
+      <section class="row sct1">
+        
+        <% finalResult.sequences.forEach((sequence) => { %>    
+        <div class="col d-flex justify-content-center align-items-center mb-5">
+      <div class="card" style="width: 18rem;">
+        <img src="/images/sequences/<%= sequence.sequence_img %>" class="card-img-top" alt="..." height="150px">
+        <div class="card-body">
+          <h4 class="card-title"><%= sequence.movie %></h4>
+          <h5><%= sequence.movie_year %></h5>
+          <p class="card-text"><%= sequence.synopsis %></p>        
+        </div>
+      </div>
+    </div>
+      <% }) %>
+  </section>
+
+
+    </main>
+
+
+    <%- include('footer') %>
