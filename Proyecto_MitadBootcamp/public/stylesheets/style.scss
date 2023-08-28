@@ -1,9 +1,5 @@
-$sailor-color: #001F3F;
-$blue-color: #083358;
-$sky-color: #0D63A5;
-$yellow-color: #FFD717;
-$yellow2-color: #ffe563;
-$white-color: #ffffff;
+@use "./variables" as v;
+@use "./mixin" as m;
 
 @font-face {
   font-family: 'Caveat-VariableFont_wght';
@@ -19,6 +15,18 @@ body{
   font-size: 1.2rem;
 }
 
+body::-webkit-scrollbar {
+  width: 12px;               // ancho del scrollbar
+}
+body::-webkit-scrollbar-track {
+  background: v.$yellow-color;        // color de fondo
+}
+body::-webkit-scrollbar-thumb {
+  background-color: v.$sailor-color;    // color de la parte movil
+  border-radius: 20px;       // redondeado de parte movil
+  border: 3px solid v.$yellow-color;  // bordes de la parte movil para dar efecto padding
+}
+
 .sct0{
   padding-bottom: 8vh;
   background: linear-gradient(45deg, rgba(255,242,176,1) 0%, rgba(255,229,99,1) 50%, rgba(255,216,23,1) 100%);
@@ -27,16 +35,16 @@ body{
   border-bottom-right-radius: 50% 5%;
 
   .rotulo{
-    color: $sailor-color;
+    color: v.$sailor-color;
     font-family: 'FilmLetters';
     font-size: 10vw;    
     margin: 0;
   }
-  .present{
+  .present-txt{
     div{
       width: 60%;
-      background-color: $sky-color;
-      border: 2px solid $blue-color;
+      background-color: v.$sky-color;
+      border: 2px solid v.$blue-color;
     }  
   } 
   .contimg{
@@ -45,7 +53,7 @@ body{
       height: auto;
       object-position: center;
       object-fit: cover;
-      box-shadow: $sky-color 10px -10px, $blue-color 20px -20px;
+      box-shadow: v.$sky-color 10px -10px, v.$blue-color 20px -20px;
     }
   }  
 }
@@ -54,14 +62,14 @@ body{
   padding: 10vh 6vw;
 
   .rotulo{
-    color: $sailor-color;
+    color: v.$sailor-color;
     font-family: 'FilmLetters';
     font-size: 6vw;    
     margin: 0;
   }
   .card{
     height: 100%;
-    border: 1px solid $sky-color;
+    border: 1px solid v.$sky-color;
 
     .card-img-top {
       object-fit: cover;
@@ -72,38 +80,24 @@ body{
       text-align: center;
       box-shadow: 0px 15px 15px -8px rgba(0,0,0,0.5)
     }
+
     .css-button-3d--sky {
-      min-width: 130px;
-      height: 40px;
-      color: #fff;
-      padding: 5px 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      display: inline-block;
-      outline: none;
-      border-radius: 5px;
-      border: none;
-      background: $sky-color;
-      box-shadow: 0 5px $blue-color;
+     @include m.butt3d(v.$sky-color,v.$sailor-color)
     }
-    .css-button-3d--sky:hover {
-      box-shadow: 0 3px $blue-color;
-      top: 1px;
+    .css-button-3d--yellow {
+     @include m.butt3d(v.$yellow-color,v.$yellow3-color)
     }
-    .css-button-3d--sky:active {
-      box-shadow: 0 0 $blue-color;
-      top: 5px;
+    .css-button-3d--red {
+     @include m.butt3d(v.$red-color,v.$red2-color)
     }
-  }
+
+  } 
   .card:hover{
     transform: scale(1.1);
-  }
-  
+  }  
 }
 
-.city{
+.present{
   padding: 10vh 6vw;  
   background: linear-gradient(45deg, rgba(131,167,193,1) 0%, rgba(69,132,181,1) 50%, rgba(13,99,165,1) 100%);
   position: relative;  
@@ -111,94 +105,39 @@ body{
   border-bottom-right-radius: 50% 15%;
 
   .card{
-    width: 60%;    
+    width: 60%;
+    hr{
+      width: 50%;
+      height: 8px;
+      background-color: v.$yellow-color;
+      opacity: 1;
+    }    
   }
 
   .card-body{
     width: 100%;
     height: 100%;    
-    border: 2px solid $yellow-color;
+    border: 2px solid v.$yellow-color;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 
     .css-button-sliding-to-bottom--yellow {
-      min-width: 130px;
-      height: 40px;
-      color: #fff;
-      padding: 5px 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      display: inline-block;
-      outline: none;
-      border-radius: 5px;
-      z-index: 0;
-      background: #fff;
-      overflow: hidden;
-      border: 2px solid $yellow-color;
-      color: $yellow-color;
+      @include m.buttslide(v.$yellow-color)
     }
-    .css-button-sliding-to-bottom--yellow:hover {
-      color: #fff;
-    }
-    .css-button-sliding-to-bottom--yellow:hover:after {
-      height: 100%;
-    }
-    .css-button-sliding-to-bottom--yellow:after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      transition: all 0.3s ease;
-      left: 0;
-      top: 0;
-      height: 0;
-      width: 100%;
-      background: #ffd819;
-    }
-
     .css-button-sliding-to-bottom--red {
-      min-width: 130px;
-      height: 40px;
-      color: #fff;
-      padding: 5px 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      display: inline-block;
-      outline: none;
-      border-radius: 5px;
-      z-index: 0;
-      background: #fff;
-      overflow: hidden;
-      border: 2px solid #d90429;
-      color: #d90429;
+      @include m.buttslide(v.$red-color)
     }
-    .css-button-sliding-to-bottom--red:hover {
-      color: #fff;
-    }
-    .css-button-sliding-to-bottom--red:hover:after {
-      height: 100%;
-    }
-    .css-button-sliding-to-bottom--red:after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      transition: all 0.3s ease;
-      left: 0;
-      top: 0;
-      height: 0;
-      width: 100%;
-      background: #d90429;
+    .css-button-sliding-to-bottom--blue {
+      @include m.buttslide(v.$sailor-color)
     }
   }
+
   .contimg{
     img{
       width: 100%;
       height: 55vh;
       object-fit: cover;
       object-position: center;
-      box-shadow: $yellow2-color 10px -10px, $yellow-color 20px -20px;
+      box-shadow: v.$yellow2-color 10px -10px, v.$yellow-color 20px -20px;
     }
   }
 }
@@ -209,7 +148,7 @@ body{
   background: linear-gradient(45deg, rgba(255,242,176,1) 0%, rgba(255,229,99,1) 50%, rgba(255,216,23,1) 100%);
 
   .rotulo{
-    color: $sailor-color;
+    color: v.$sailor-color;
     font-family: 'FilmLetters';
     font-size: 8vw;    
     margin: 0;
@@ -218,49 +157,21 @@ body{
   .txt1{
     width: 75%;
     height: auto;    
-    background-color: $sky-color;
-    border: 2px solid $sailor-color;
+    background-color: v.$sky-color;
+    border: 2px solid v.$sailor-color;
   }
 
   .contform{
     width: 60%;
     padding: 2vh 1vw;
-    border: 2px solid $sailor-color;
+    border: 2px solid v.$sailor-color;
+
+    img{
+      width: 20%;
+    }
 
     .css-button-arrow--red {
-      width: clamp(65px, 8vw, 150px);
-      height: 40px;
-      color: #fff;
-      padding: 5px 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      display: inline-block;
-      outline: none;
-      overflow: hidden;
-      border-radius: 5px;
-      border: none;
-      background-color: #ef233c
-    }
-    .css-button-arrow--red:hover {
-      border-radius: 5px;
-      padding-right: 24px;
-      padding-left:8px;
-    }
-    .css-button-arrow--red:hover:after {
-      opacity: 1;
-      right: 10px;
-    }
-    .css-button-arrow--red:after {
-      content: "\00BB";
-      position: absolute;
-      opacity: 0;
-      font-size: 20px;
-      line-height: 40px;
-      top: 0;
-      right: -20px;
-      transition: 0.4s;
+      @include m.buttarrow(v.$blue-color)
     }
   }
 }

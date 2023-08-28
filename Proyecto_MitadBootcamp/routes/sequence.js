@@ -1,17 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const connection = require('../config/database')
+const SequenceController = require('../controllers/sequenceController');
+const uploadFile = require('../middlewares/multer');
 
 //localhost:3000/sequence
-router.get('/', (req, res) => {
-    let sql = "SELECT * FROM sequence WHERE sequence_deleted = 0";
+router.get('/', SequenceController.allSequences);
 
-    connection.query(sql, (err, result) => { 
-        if(err) throw err;    
-        res.render('allSequences', { result });
-      }
-    )
-  }
-)
+router.get('/createSeqForm/:place_id', SequenceController.createForm);
+
+router.post('/createSequence/:place_id', uploadFile('sequences'), SequenceController.createSequence);
+
+router.get('/logicDeleteSeq/:place_id/:sequence_id', SequenceController.logicDeleteSeq);
 
 module.exports = router;

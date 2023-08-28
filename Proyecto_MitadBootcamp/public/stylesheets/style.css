@@ -1,4 +1,52 @@
 @charset "UTF-8";
+.sct1 .card .css-button-3d--sky, .sct1 .card .css-button-3d--yellow, .sct1 .card .css-button-3d--red {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+}
+
+.present .card-body .css-button-sliding-to-bottom--yellow, .present .card-body .css-button-sliding-to-bottom--red, .present .card-body .css-button-sliding-to-bottom--blue {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  z-index: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.sctform .contform .css-button-arrow--red {
+  width: clamp(65px, 8vw, 150px);
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  overflow: hidden;
+  border-radius: 5px;
+  border: none;
+}
+
 @font-face {
   font-family: "Caveat-VariableFont_wght";
   src: url("/assets/Caveat-VariableFont_wght.ttf") format("truetype");
@@ -10,6 +58,20 @@
 body {
   font-family: "Caveat-VariableFont_wght";
   font-size: 1.2rem;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #FFD717;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #001F3F;
+  border-radius: 20px;
+  border: 3px solid #FFD717;
 }
 
 .sct0 {
@@ -25,7 +87,7 @@ body {
   font-size: 10vw;
   margin: 0;
 }
-.sct0 .present div {
+.sct0 .present-txt div {
   width: 60%;
   background-color: #0D63A5;
   border: 2px solid #083358;
@@ -65,74 +127,78 @@ body {
   box-shadow: 0px 15px 15px -8px rgba(0, 0, 0, 0.5);
 }
 .sct1 .card .css-button-3d--sky {
-  min-width: 130px;
-  height: 40px;
-  color: #fff;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  outline: none;
-  border-radius: 5px;
-  border: none;
   background: #0D63A5;
-  box-shadow: 0 5px #083358;
+  box-shadow: 0 5px #001F3F;
 }
 .sct1 .card .css-button-3d--sky:hover {
-  box-shadow: 0 3px #083358;
+  box-shadow: 0 3px #001F3F;
   top: 1px;
 }
 .sct1 .card .css-button-3d--sky:active {
-  box-shadow: 0 0 #083358;
+  box-shadow: 0 3px #001F3F;
+  top: 5px;
+}
+.sct1 .card .css-button-3d--yellow {
+  background: #FFD717;
+  box-shadow: 0 5px #ccaa00;
+}
+.sct1 .card .css-button-3d--yellow:hover {
+  box-shadow: 0 3px #ccaa00;
+  top: 1px;
+}
+.sct1 .card .css-button-3d--yellow:active {
+  box-shadow: 0 3px #ccaa00;
+  top: 5px;
+}
+.sct1 .card .css-button-3d--red {
+  background: #d90429;
+  box-shadow: 0 5px #840319;
+}
+.sct1 .card .css-button-3d--red:hover {
+  box-shadow: 0 3px #840319;
+  top: 1px;
+}
+.sct1 .card .css-button-3d--red:active {
+  box-shadow: 0 3px #840319;
   top: 5px;
 }
 .sct1 .card:hover {
   transform: scale(1.1);
 }
 
-.city {
+.present {
   padding: 10vh 6vw;
   background: linear-gradient(45deg, rgb(131, 167, 193) 0%, rgb(69, 132, 181) 50%, rgb(13, 99, 165) 100%);
   position: relative;
   border-bottom-left-radius: 50% 5%;
   border-bottom-right-radius: 50% 15%;
 }
-.city .card {
+.present .card {
   width: 60%;
 }
-.city .card-body {
+.present .card hr {
+  width: 50%;
+  height: 8px;
+  background-color: #FFD717;
+  opacity: 1;
+}
+.present .card-body {
   width: 100%;
   height: 100%;
   border: 2px solid #FFD717;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
-.city .card-body .css-button-sliding-to-bottom--yellow {
-  min-width: 130px;
-  height: 40px;
-  color: #fff;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  outline: none;
-  border-radius: 5px;
-  z-index: 0;
-  background: #fff;
-  overflow: hidden;
+.present .card-body .css-button-sliding-to-bottom--yellow {
   border: 2px solid #FFD717;
   color: #FFD717;
 }
-.city .card-body .css-button-sliding-to-bottom--yellow:hover {
+.present .card-body .css-button-sliding-to-bottom--yellow:hover {
   color: #fff;
 }
-.city .card-body .css-button-sliding-to-bottom--yellow:hover:after {
+.present .card-body .css-button-sliding-to-bottom--yellow:hover:after {
   height: 100%;
 }
-.city .card-body .css-button-sliding-to-bottom--yellow:after {
+.present .card-body .css-button-sliding-to-bottom--yellow:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -141,33 +207,19 @@ body {
   top: 0;
   height: 0;
   width: 100%;
-  background: #ffd819;
+  background: #FFD717;
 }
-.city .card-body .css-button-sliding-to-bottom--red {
-  min-width: 130px;
-  height: 40px;
-  color: #fff;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  outline: none;
-  border-radius: 5px;
-  z-index: 0;
-  background: #fff;
-  overflow: hidden;
+.present .card-body .css-button-sliding-to-bottom--red {
   border: 2px solid #d90429;
   color: #d90429;
 }
-.city .card-body .css-button-sliding-to-bottom--red:hover {
+.present .card-body .css-button-sliding-to-bottom--red:hover {
   color: #fff;
 }
-.city .card-body .css-button-sliding-to-bottom--red:hover:after {
+.present .card-body .css-button-sliding-to-bottom--red:hover:after {
   height: 100%;
 }
-.city .card-body .css-button-sliding-to-bottom--red:after {
+.present .card-body .css-button-sliding-to-bottom--red:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -178,7 +230,28 @@ body {
   width: 100%;
   background: #d90429;
 }
-.city .contimg img {
+.present .card-body .css-button-sliding-to-bottom--blue {
+  border: 2px solid #001F3F;
+  color: #001F3F;
+}
+.present .card-body .css-button-sliding-to-bottom--blue:hover {
+  color: #fff;
+}
+.present .card-body .css-button-sliding-to-bottom--blue:hover:after {
+  height: 100%;
+}
+.present .card-body .css-button-sliding-to-bottom--blue:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s ease;
+  left: 0;
+  top: 0;
+  height: 0;
+  width: 100%;
+  background: #001F3F;
+}
+.present .contimg img {
   width: 100%;
   height: 55vh;
   -o-object-fit: cover;
@@ -210,21 +283,11 @@ body {
   padding: 2vh 1vw;
   border: 2px solid #001F3F;
 }
+.sctform .contform img {
+  width: 20%;
+}
 .sctform .contform .css-button-arrow--red {
-  width: clamp(65px, 8vw, 150px);
-  height: 40px;
-  color: #fff;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  outline: none;
-  overflow: hidden;
-  border-radius: 5px;
-  border: none;
-  background-color: #ef233c;
+  background-color: #083358;
 }
 .sctform .contform .css-button-arrow--red:hover {
   border-radius: 5px;

@@ -82,19 +82,62 @@ class CityController{
       
         let sql = `INSERT INTO destination (city, country, info, city_img, email, password) VALUES ('${city}','${country}','${info}', '${img}', '${email}', '${hash}')`
       
-        connection.query(sql, (err, result) => {      
+        connection.query(sql, (err, result) => { 
             if(err){
               if(err.code == 'ER_DUP_ENTRY'){
-                res.render('cityForm', {message: 'Ya existe un destino con ese correo electronico.'});
+                return res.render('cityForm', {message: 'Ya existe un destino con este nombre u otro destino con ese correo electronico.'});
               }else{
-                res.render('cityForm', {message: 'Algo ha ido mal, intentelo de nuevo.'});
+                return res.render('cityForm', {message: 'Algo ha ido mal, intentelo de nuevo.'});
               }
-            }
+            } 
             res.redirect(`/city/oneCity/${result.insertId}`);
           }
         ) 
       }
     )   
+  }
+
+  editCityForm = (req, res)=>{
+    let {city_id} = req.params;
+    let sql = `select * from destination where destination_id = ${city_id}`;
+    let {error} = req.query;   
+
+    let message = "";
+    if(error != undefined){
+      message = 'Todos los campos son obligatorios.';
+    }
+    
+    connection.query(sql, (err, result) => {
+      if(err) throw err;      
+      res.render('cityEdit', {result, message});
+    })
+  }
+
+  editCity = (req, res) => {
+    let {city_id} = req.params;
+    let {city, country, info} = req.body;
+    let img = req.file?.filename;
+
+    if (
+      city === '' ||
+      country === '' ||
+      info === ''    
+    )
+    {
+      return res.redirect(`/city/editCityForm/${city_id}?error=error`)
+    }
+
+    let sql = `UPDATE destination SET city = '${city}', country = '${country}', info = '${info}' WHERE destination_id = ${city_id}`
+
+    if (img != undefined){
+      sql = `UPDATE destination SET city = '${city}', country = '${country}', info = '${info}', city_img = '${img}' WHERE destination_id = ${city_id}`
+    }
+      
+    connection.query(sql, (err, result) => {
+      if(err) throw err;    
+      res.redirect(`/city/oneCity/${city_id}`)
+    }) 
+    
   }
   
   logicDeleteCity = (req, res) => {

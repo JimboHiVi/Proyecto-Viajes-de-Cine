@@ -85,28 +85,38 @@ class PlaceController{
 
   editPlaceForm = (req, res)=>{
     let {place_id} = req.params;
-    let sql = `select * from place where place_id = ${place_id}`
+    let sql = `select * from place where place_id = ${place_id}`;
+    let {error} = req.query;   
+
+    let message = "";
+    if(error != undefined){
+      message = 'Todos los campos son obligatorios.';
+    }
     
     connection.query(sql, (err, result) => {
       if(err) throw err;      
-      res.render('placeEdit', {result});
+      res.render('placeEdit', {result, message});
     })
   }
 
   editPlace = (req, res) => {
     let {place_id} = req.params;
     let {name, address, history} = req.body;
+    let img = req.file?.filename;
 
-/*     if (
+    if (
       name === '' ||
       address === '' ||
       history === ''    
     )
     {
-      return res.redirect('editForm', {message: 'Todos los campos son obligatorios.', messageId: place_id})
-    } */
-  
+      return res.redirect(`/place/editPlaceForm/${place_id}?error=error`)
+    }
+
     let sql = `UPDATE place SET name = '${name}', address = '${address}', history = '${history}' WHERE place_id = ${place_id}`
+    if (img != undefined){
+      sql = `UPDATE place SET name = '${name}', address = '${address}', history = '${history}', place_img = '${img}' WHERE place_id = ${place_id}`
+    }
       
     connection.query(sql, (err, result) => {
       if(err) throw err;    

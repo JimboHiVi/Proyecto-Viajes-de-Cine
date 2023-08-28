@@ -14,15 +14,17 @@
 
 
     <main class="container-fluid">
-      <section class="row city">
+      <section class="row present">
           <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center mb-5">
             <div class="card">
-              <div class="card-body">
-                <h2 class="card-title mb-5"><%= finalResult.name %></h2>
+              <div class="card-body position-relative">
+                <h2 class="card-title mb-3"><%= finalResult.name %></h2>
+                <hr>
                 <h5><%= finalResult.address %></h5>
                 <p class="card-text"><%= finalResult.history %></p>
-                <a href="/place/editForm/<%= finalResult.place_id %>" class="btn css-button-sliding-to-bottom--yellow mb-2">Editar</a>
-                <a href="/place/logicDeletePlace/<%= finalResult.place_id %>" class="btn css-button-sliding-to-bottom--red mb-2">Borrar</a>       
+                <a href="/place/editPlaceForm/<%= finalResult.place_id %>" class="btn css-button-sliding-to-bottom--yellow mb-2">Editar</a>
+                <a href="/place/logicDeletePlace/<%= finalResult.place_id %>" class="btn css-button-sliding-to-bottom--red mb-2">Borrar</a>
+                <a href="/sequence/createSeqForm/<%= finalResult.place_id %>" class="btn css-button-sliding-to-bottom--blue position-absolute top-0 start-100 translate-middle">Crear Escena</a>        
               </div>
             </div>         
           </div>
@@ -42,7 +44,8 @@
         <div class="card-body">
           <h4 class="card-title"><%= sequence.movie %></h4>
           <h5><%= sequence.movie_year %></h5>
-          <p class="card-text"><%= sequence.synopsis %></p>        
+          <p class="card-text"><%= sequence.synopsis %></p>
+          <a href="/sequence/logicDeleteSeq/<%= finalResult.place_id %>/<%= sequence.sequence_id %>" class="btn css-button-3d--red">Borrar</a>        
         </div>
       </div>
     </div>

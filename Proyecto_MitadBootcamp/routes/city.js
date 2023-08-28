@@ -16,6 +16,10 @@ router.get('/createCityForm', CityController.createForm);
 
 router.post('/createCity', uploadFile('cities'), CityController.createCity);
 
+router.get('/editCityForm/:city_id', CityController.editCityForm);
+
+router.post('/editCity/:city_id', uploadFile('cities'), CityController.editCity);
+
 router.get('/logicDeleteCity/:city_id', CityController.logicDeleteCity);
 
 module.exports = router;
